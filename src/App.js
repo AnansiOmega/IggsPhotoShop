@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
+import { Switch, Route } from 'react-router-dom'
+import Home from './pages/home'
+import Login from './pages/login'
+import Cart from './pages/cart'
+import About from './pages/about'
+import NavBar from './components/navbar'
+import image from './images/blackWoodBackground.jpg'
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    document.body.style.backgroundImage = `url(${image})`
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+       <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/login' component={Login} />
+          <Route path='/cart' component={Cart} />
+          <Route path='/about' component={About} />
+        </Switch>
     </div>
   );
 }
