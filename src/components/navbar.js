@@ -18,7 +18,7 @@ const NavBar = ({cart, auth, logoutUser}) => {
             </div>
             </Link>
             <Link to='/about' className='item'>
-                About Us
+                About
             </Link>
             <Link className="item" to='/cart'>
                 <>Cart</><div className="ui circular label white">{cart.length}</div>
