@@ -29,7 +29,7 @@ const PhotoCard = ({photo, showPhoto, setOpen, addToCart, user}) => {
     const url = `http://localhost:3000${image}`
     const link = `http://localhost:3000/image_file/${id}`
     const shadow = { boxShadow: '-3px -3px 22px #fff' }
-    const mousedShadow = { boxShadow: `-6px -6px 50px ${color[4]}`}
+    const mousedShadow = { boxShadow: `-6px -6px 50px ${color[1]}`}
 
     return(
         <div className='image-card'>

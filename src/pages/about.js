@@ -9,7 +9,7 @@ const About = () => {
             <h2 style={{fontSize: '60px'}}><b>In this website you are not buying anything!</b></h2>
             <p>
                 The idea behind this website is to test my skills in creating
-                an e-commerce website. Unfortunately, I have nothing to sell, so instead by adding these photos to your cart and
+                an e-commerce website. Unfortunately, I have nothing to sell, so by adding these photos to your cart and
                 purchasing them you are making a donation for the phenomenal work that I've been doing.
             </p>
             <p>

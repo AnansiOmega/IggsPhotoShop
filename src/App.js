@@ -7,11 +7,26 @@ import Cart from './pages/cart'
 import About from './pages/about'
 import NavBar from './components/navbar'
 import image from './images/blackWoodBackground.jpg'
+import { currentUser } from './Actions/auth'
+import { connect } from 'react-redux'
 
-const App = () => {
+const App = ({currentUser}) => {
   useEffect(() => {
     document.body.style.backgroundImage = `url(${image})`
   },[])
+
+  useEffect(() => {
+    const token = localStorage.getItem('myToken')
+    const reqObj = {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }
+    fetch('http://localhost:3000/current_user', reqObj)
+    .then(resp => resp.json())
+    .then(user => currentUser(user))
+},[])
 
   return (
     <div className="App">
@@ -26,4 +41,8 @@ const App = () => {
   );
 }
 
-export default App;
+const mapDispatchToProps = {
+  currentUser
+}
+
+export default connect(null, mapDispatchToProps)(App);

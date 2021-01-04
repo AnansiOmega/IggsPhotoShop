@@ -9,6 +9,8 @@ const Login = ({fetchUserSuccess}) => {
     const [ password, setPassword ] = useState('')
     const [ email, setEmail ] = useState('')
     const [ signup, setSignup ] = useState(false)
+    const [ signupErrors, setSignupErrors ] = useState([])
+    const [ loginErrors, setLoginErrors ] = useState([])
     const history = useHistory()
 
     const handleChange = (e) => {
@@ -39,9 +41,13 @@ const Login = ({fetchUserSuccess}) => {
         fetch('http://localhost:3000/auth', reqObj)
         .then(resp => resp.json())
         .then(user => {
-            localStorage.setItem('myToken', user.token)
-            fetchUserSuccess(user)
-            history.push('/')
+            if(user.error){
+                setLoginErrors(user.error)
+            } else {
+                localStorage.setItem('myToken', user.token)
+                fetchUserSuccess(user)
+                history.push('/')
+            }
         })
     }
 
@@ -58,37 +64,78 @@ const Login = ({fetchUserSuccess}) => {
         fetch('http://localhost:3000/users', reqObj)
         .then( resp => resp.json())
         .then( data => {
+            if(data.errors){
+                setSignupErrors(data.errors)
+            return
+            }
             fetch('http://localhost:3000/auth', reqObj)
             .then(resp => resp.json())
             .then(user => {
-                localStorage.setItem('myToken', user.token)
-                fetchUserSuccess(user)
-                history.push('/')
+                if(user.errors){
+                    setSignupErrors(user.errors)
+                return
+                } else {
+                    localStorage.setItem('myToken', user.token)
+                    fetchUserSuccess(user)
+                    history.push('/')
+                }
             })
         })
+    }
+
+    const renderErrors = () => {
+        if(signupErrors){
+            return signupErrors.map(error => error.split(' ')[0])
+        } else {
+            return []
+        }
     }
 
     return(
         <>
         {!signup ? 
+        <>
+        <h4 style={{color: 'red'}}>{loginErrors}</h4>
         <Form onSubmit={handleLogin} className='login-form'>
             <label name='username'>Username:</label>
             <input onChange={handleChange} type="text" name="username" value={username}></input>
             <label>Password:</label>
             <input onChange={handleChange} type="password" name="password" value={password}></input>
             <Button inverted style={{ marginTop: '10px'}} type='submit'>Login</Button>
-            <Button onClick={() => setSignup(true)} inverted style={{ marginTop: '10px'}} >Signup</Button>
+            <Button onClick={() => setSignup(true)} inverted style={{ marginTop: '10px'}}>Signup</Button>
         </Form>
+        </>
         :
-        <Form onSubmit={handleSignup} className='login-form'>
-            <label name='username'>Username:</label>
-            <input onChange={handleChange} type="text" name="username" value={username}></input>
-            <label name='username'>Email:</label>
-            <input onChange={handleChange} type="text" name="email" value={email}></input>
+        <Form className='login-form' onSubmit={handleSignup}>
+            <label>Username:</label>
+            <Form.Input
+                error={renderErrors().includes('Username') ? "Username must be valid" : false }
+                fluid
+                type='text'
+                name='username'
+                value={username}
+                onChange={handleChange}
+            />
             <label>Password:</label>
-            <input onChange={handleChange} type="password" name="password" value={password}></input>
+            <Form.Input
+                error={renderErrors().includes('Password') ? "Password can't be blank" : false }
+                fluid
+                type='password'
+                name='password'
+                value={password}
+                onChange={handleChange}
+            />
+            <label>Email:</label>
+             <Form.Input
+                error={renderErrors().includes('Email') ? "Email must be valid" : false  }
+                fluid
+                type='text'
+                name='email'
+                value={email}
+                onChange={handleChange}
+            />
             <Button inverted style={{ marginTop: '10px'}} type='submit'>Signup</Button>
-        </Form>
+            </Form>
         }
         </>
     )
@@ -99,3 +146,4 @@ const mapDispatchToProps = {
 }
 
 export default connect(null, mapDispatchToProps)(Login)
+

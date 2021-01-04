@@ -19,7 +19,7 @@ const Cart = ({cart, clearCart}) => {
             { !paypalButton ? 
             <div className='cart-cont'>
                 <div className='your-cart'>Your cart</div>
-                    {cart.length !== 0 ? <div className='cart'>{renderCart()}</div> : null}
+                    { cart.length !== 0 ? <div className='cart'>{renderCart()}</div> : null }
                 <div className='total'>Total: ${total}.00</div>
                 <button style={{ marginLeft: '5px', width: '497px', color: 'black' }} className='massive ui button' onClick={() => setPaypalButton(true)}>Make a Donation</button>
             </div>

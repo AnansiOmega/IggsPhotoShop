@@ -4,8 +4,14 @@ import { Link } from 'react-router-dom'
 import { logoutUser } from '../Actions/auth'
 
 const NavBar = ({cart, auth, logoutUser}) => {
+
+    const handleLogout = () => {
+        localStorage.removeItem('myToken')
+        logoutUser()
+    }
+
     return(
-        <div style={{ backgroundColor: 'lightgrey'}} className="ui menu">
+        <div className="ui menu inverted">
             <Link to='/'>
             <div className="header item">
                 Igg's Photo Shop
@@ -15,12 +21,12 @@ const NavBar = ({cart, auth, logoutUser}) => {
                 About Us
             </Link>
             <Link className="item" to='/cart'>
-                <>Cart</><div className="ui circular label black">{cart.length}</div>
+                <>Cart</><div className="ui circular label white">{cart.length}</div>
             </Link>
             { auth.id ? 
-            <a onClick={() => logoutUser()} className="right menu item">Logout</a>
+            <a onClick={handleLogout} className="right menu item">Logout</a>
             : 
-            <Link className="right menu item" to='/login' style={{color: 'black'}}>Login</Link>
+            <Link className="right menu item" to='/login'>Login</Link>
             }
         </div>
     )
