@@ -4,8 +4,8 @@ import { showPhoto, addToCart } from '../Actions/photos'
 import { ColorExtractor } from 'react-color-extractor'
 
 export const PhotoCard = ({photo, setOpen}) => {
-    const { id, category, image, price, title, likes } = photo
-    const [ color, setColor ] = useState([])
+    const { id, category, image, price, title, likes, color } = photo
+    // const [ color, setColor ] = useState([])
     const [ showText, setShowText ] = useState(false)
     const user = useSelector(state => state.auth)
     const dispatch = useDispatch()
@@ -27,11 +27,27 @@ export const PhotoCard = ({photo, setOpen}) => {
         dispatch(showPhoto(photo))
         setOpen(true)
     }
+
+    const handleColorUpdate = (color) => {
+
+        let reqObj = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({color})
+        }
+        fetch(`http://localhost:3000/photos/${id}`, reqObj)
+        .then( resp => resp.json())
+        .then( data => {
+            console.log(data)
+        })
+    }
     
     const url = `http://localhost:3000${image}`
     const link = `http://localhost:3000/image_file/${id}`
     const shadow = { boxShadow: '-3px -3px 22px #fff' }
-    const mousedShadow = { boxShadow: `-6px -6px 50px ${color[1]}`}
+    const mousedShadow = { boxShadow: `-6px -6px 50px ${color}`}
 
     return(
         <div className='image-card'>
@@ -52,7 +68,7 @@ export const PhotoCard = ({photo, setOpen}) => {
             </div>
             {/* <ColorExtractor
             src={url}
-            getColors={colors => setColor(colors)}
+            getColors={colors => handleColorUpdate(colors[1])}
             /> */}
         </div>
     )
