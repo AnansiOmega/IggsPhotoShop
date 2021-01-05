@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/IggsPhotoShop/static/css/main.b869d7ef.chunk.css",
+    "main.js": "/IggsPhotoShop/static/js/main.24716bb7.chunk.js",
+    "main.js.map": "/IggsPhotoShop/static/js/main.24716bb7.chunk.js.map",
+    "runtime-main.js": "/IggsPhotoShop/static/js/runtime-main.a7c67329.js",
+    "runtime-main.js.map": "/IggsPhotoShop/static/js/runtime-main.a7c67329.js.map",
+    "static/css/2.a3da3057.chunk.css": "/IggsPhotoShop/static/css/2.a3da3057.chunk.css",
+    "static/js/2.11d5c7d9.chunk.js": "/IggsPhotoShop/static/js/2.11d5c7d9.chunk.js",
+    "static/js/2.11d5c7d9.chunk.js.map": "/IggsPhotoShop/static/js/2.11d5c7d9.chunk.js.map",
+    "static/js/3.ed426802.chunk.js": "/IggsPhotoShop/static/js/3.ed426802.chunk.js",
+    "static/js/3.ed426802.chunk.js.map": "/IggsPhotoShop/static/js/3.ed426802.chunk.js.map",
+    "index.html": "/IggsPhotoShop/index.html",
+    "static/css/2.a3da3057.chunk.css.map": "/IggsPhotoShop/static/css/2.a3da3057.chunk.css.map",
+    "static/css/main.b869d7ef.chunk.css.map": "/IggsPhotoShop/static/css/main.b869d7ef.chunk.css.map",
+    "static/js/2.11d5c7d9.chunk.js.LICENSE.txt": "/IggsPhotoShop/static/js/2.11d5c7d9.chunk.js.LICENSE.txt",
+    "static/media/blackWoodBackground.fdd81561.jpg": "/IggsPhotoShop/static/media/blackWoodBackground.fdd81561.jpg",
+    "static/media/semantic.min.css": "/IggsPhotoShop/static/media/outline-icons.ddae9b1b.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a7c67329.js",
+    "static/css/2.a3da3057.chunk.css",
+    "static/js/2.11d5c7d9.chunk.js",
+    "static/css/main.b869d7ef.chunk.css",
+    "static/js/main.24716bb7.chunk.js"
+  ]
+}
