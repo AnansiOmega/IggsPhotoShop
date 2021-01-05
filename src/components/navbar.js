@@ -1,15 +1,18 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logoutUser } from '../Actions/auth'
 
-const NavBar = ({cart, auth, logoutUser}) => {
+export const NavBar = () => {
+    const cart = useSelector(state => state.cart, prev => prev.length === cart)
+    const auth = useSelector(state => state.auth)
+    const dispatch = useDispatch()
 
     const handleLogout = () => {
         localStorage.removeItem('myToken')
-        logoutUser()
+        dispatch(logoutUser())
     }
-
+    
     return(
         <div className="ui menu inverted">
             <Link to='/'>
@@ -31,16 +34,3 @@ const NavBar = ({cart, auth, logoutUser}) => {
         </div>
     )
 }
-
-const mapStateToProps = state => {
-    return {
-        cart: state.cart,
-        auth: state.auth
-    }
-}
-
-const mapDispatchToProps = {
-    logoutUser
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { fetchPhotosSuccess } from '../Actions/photos'
-import PhotoCard from '../components/PhotoCard'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { PhotoCard } from '../components/PhotoCard'
 import { Lightbox } from "react-modal-image";
 
-const Home = ({fetchPhotosSuccess, photos, photo}) => {
+export const Home = () => {
 const [ open, setOpen ] = useState(false)
+const photos = useSelector(state => state.photos)
+const photo = useSelector(state => state.photo)
 
-useEffect(() => {
-  fetch('http://localhost:3000/photos')
-  .then(resp => resp.json())
-  .then(photos => fetchPhotosSuccess(photos))
-},[])
 
 const renderPhotos = () => {
     return photos.map(photo => <PhotoCard setOpen={setOpen} photo={photo} key={photo.id}/>)
@@ -37,16 +33,3 @@ let url = `http://localhost:3000${image}`
     )
 
 }
-
-const mapStateToProps = state => {
-    return {
-        photos: state.photos,
-        photo: state.photo
-    }
-}
-
-const mapDispatchToProps = {
-    fetchPhotosSuccess
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)

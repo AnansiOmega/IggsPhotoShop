@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom'
-import Home from './pages/home'
-import Login from './pages/login'
-import Cart from './pages/cart'
-import About from './pages/about'
-import NavBar from './components/navbar'
+import { Home } from './pages/home'
+import { Login } from './pages/login'
+import { Cart } from './pages/cart'
+import { About } from './pages/about'
+import { NavBar } from './components/navbar'
 import image from './images/blackWoodBackground.jpg'
 import { currentUser } from './Actions/auth'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { fetchPhotosSuccess } from './Actions/photos'
 
-const App = ({currentUser}) => {
+export const App = () => {
+  const dispatch = useDispatch()
   useEffect(() => {
     document.body.style.backgroundImage = `url(${image})`
   },[])
@@ -25,8 +27,16 @@ const App = ({currentUser}) => {
     }
     fetch('http://localhost:3000/current_user', reqObj)
     .then(resp => resp.json())
-    .then(user => currentUser(user))
-},[])
+    .then(user => dispatch(currentUser(user)))
+  },[])
+
+  useEffect(() => {
+  fetch('http://localhost:3000/photos')
+  .then(resp => resp.json())
+  .then(photos => dispatch(fetchPhotosSuccess(photos)))
+  },[])
+
+
 
   return (
     <div className="App">
@@ -40,9 +50,3 @@ const App = ({currentUser}) => {
     </div>
   );
 }
-
-const mapDispatchToProps = {
-  currentUser
-}
-
-export default connect(null, mapDispatchToProps)(App);

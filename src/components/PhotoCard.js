@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { showPhoto, addToCart } from '../Actions/photos'
 import { ColorExtractor } from 'react-color-extractor'
 
-const PhotoCard = ({photo, showPhoto, setOpen, addToCart, user}) => {
+export const PhotoCard = ({photo, setOpen}) => {
     const { id, category, image, price, title, likes } = photo
     const [ color, setColor ] = useState([])
     const [ showText, setShowText ] = useState(false)
+    const user = useSelector(state => state.auth)
+    const dispatch = useDispatch()
     const [ liked, setLiked ] = useState(0)
     useEffect(() => {
         if(liked === 0) return 
@@ -22,7 +24,7 @@ const PhotoCard = ({photo, showPhoto, setOpen, addToCart, user}) => {
     },[liked])
 
     const handleShowPic = () => {
-        showPhoto(photo)
+        dispatch(showPhoto(photo))
         setOpen(true)
     }
     
@@ -46,25 +48,12 @@ const PhotoCard = ({photo, showPhoto, setOpen, addToCart, user}) => {
                 </div>
                 <button className='ui button circular'><a style={{color: 'black'}} href={link} target="_blank" rel="noreferrer noopener"><i className="download icon"></i></a></button>
                 {user.id ? <button onClick={() => setLiked(liked + 1)} className="ui button circular black"><i className="heart icon"></i>{likes + liked % 2 }</button> : null}
-                <button className='ui button circular' onClick={() => addToCart(photo)}><i style={{color: 'black'}} className="cart plus icon"></i></button>
+                <button className='ui button circular' onClick={() => dispatch(addToCart(photo))}><i style={{color: 'black'}} className="cart plus icon"></i></button>
             </div>
-            <ColorExtractor
+            {/* <ColorExtractor
             src={url}
             getColors={colors => setColor(colors)}
-            />
+            /> */}
         </div>
     )
 }
-
-const mapStateToProps = state => {
-    return {
-        user: state.auth
-    }
-}
-
-const mapDispatchToProps = {
-    showPhoto,
-    addToCart
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PhotoCard)

@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Button, Form } from 'semantic-ui-react'
 import { fetchUserSuccess } from '../Actions/auth'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-const Login = ({fetchUserSuccess}) => {
+export const Login = () => {
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ email, setEmail ] = useState('')
@@ -12,6 +12,7 @@ const Login = ({fetchUserSuccess}) => {
     const [ signupErrors, setSignupErrors ] = useState([])
     const [ loginErrors, setLoginErrors ] = useState([])
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const handleChange = (e) => {
         switch(e.target.name){
@@ -45,7 +46,7 @@ const Login = ({fetchUserSuccess}) => {
                 setLoginErrors(user.error)
             } else {
                 localStorage.setItem('myToken', user.token)
-                fetchUserSuccess(user)
+                dispatch(fetchUserSuccess(user))
                 history.push('/')
             }
         })
@@ -76,7 +77,7 @@ const Login = ({fetchUserSuccess}) => {
                 return
                 } else {
                     localStorage.setItem('myToken', user.token)
-                    fetchUserSuccess(user)
+                    dispatch(fetchUserSuccess(user))
                     history.push('/')
                 }
             })
@@ -140,10 +141,3 @@ const Login = ({fetchUserSuccess}) => {
         </>
     )
 }
-
-const mapDispatchToProps = {
-    fetchUserSuccess
-}
-
-export default connect(null, mapDispatchToProps)(Login)
-

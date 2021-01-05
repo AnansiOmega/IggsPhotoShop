@@ -1,8 +1,7 @@
 import React from 'react'
 
 
-const About = () => {
-
+export const About = () => {
     return(
         <div className='about'>
             <h1>What's going on here</h1>
@@ -20,6 +19,3 @@ const About = () => {
         </div>
     )
 }
-
-
-export default About

@@ -1,17 +1,25 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { PayPalButton } from "react-paypal-button-v2";
 import { useHistory } from 'react-router-dom'
 import { clearCart } from '../Actions/photos'
+import { removeFromCart } from '../Actions/photos'
 
 
-const Cart = ({cart, clearCart}) => {
+export const Cart = () => {
     const [ paypalButton, setPaypalButton ] = useState(false)
+    const cart = useSelector(state => state.cart, prev => prev.length === cart)
+    const dispatch = useDispatch()
     const history = useHistory()
     const total = cart.map(photo => parseInt(photo.price)).reduce((a, b) => a + b, 0)
 
     const renderCart = () => {
-        return cart.map(photo => <div className='cart-item'>{photo.title}: ${photo.price}.00</div>)
+        return cart.map((photo, i) => {
+        return <div className='cart-item'>{photo.title}: ${photo.price}.00
+        <button onClick={() => dispatch(removeFromCart(i))} style={{float: 'right'}} className="circular mini ui icon button black">
+        <i className="x icon"></i>
+        </button></div>
+        })
     }
 
     return(
@@ -33,8 +41,8 @@ const Cart = ({cart, clearCart}) => {
                 amount={total}
                 shippingPreference= "NO_SHIPPING"
                 onSuccess={(details, data) => { 
-                alert("Thanks for purchasing " + details.payer.name.given_name)
-                clearCart()
+                alert("Thanks for donating " + details.payer.name.given_name)
+                dispatch(clearCart())
                 history.push('/')
                 }}
                 />
@@ -43,15 +51,3 @@ const Cart = ({cart, clearCart}) => {
         </>
     )
 }
-
-const mapStateToProps = state => {
-    return {
-        cart: state.cart
-    }
-}
-
-const mapDispatchToProps = {
-    clearCart
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
