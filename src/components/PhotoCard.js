@@ -18,7 +18,7 @@ const PhotoCard = ({photo, showPhoto, setOpen, addToCart, user}) => {
             },
             body: JSON.stringify({like})
         }
-        fetch(`http://localhost:3000/likes/${id}`, reqObj)
+        fetch(`https://desolate-plateau-74310.herokuapp.com/likes/${id}`, reqObj)
     },[liked])
 
     const handleShowPic = () => {

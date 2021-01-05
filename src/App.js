@@ -23,7 +23,7 @@ const App = ({currentUser}) => {
             'Authorization': `Bearer ${token}`
         }
     }
-    fetch('http://localhost:3000/current_user', reqObj)
+    fetch('https://desolate-plateau-74310.herokuapp.com/current_user', reqObj)
     .then(resp => resp.json())
     .then(user => currentUser(user))
 },[])
