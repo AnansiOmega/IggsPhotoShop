@@ -8,7 +8,7 @@ const Home = ({fetchPhotosSuccess, photos, photo}) => {
 const [ open, setOpen ] = useState(false)
 
 useEffect(() => {
-  fetch('https://desolate-plateau-74310.herokuapp.com/photos')
+  fetch('http://localhost:3000/photos')
   .then(resp => resp.json())
   .then(photos => fetchPhotosSuccess(photos))
 },[])
@@ -18,7 +18,7 @@ const renderPhotos = () => {
 }
 
 const { title, image } = photo
-let url = `https://desolate-plateau-74310.herokuapp.com${image}`
+let url = `http://localhost:3000${image}`
 
     return(
         <>

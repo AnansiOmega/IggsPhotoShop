@@ -38,7 +38,7 @@ const Login = ({fetchUserSuccess}) => {
             },
             body: JSON.stringify({username, password})
         }
-        fetch('https://desolate-plateau-74310.herokuapp.com/auth', reqObj)
+        fetch('http://localhost:3000/auth', reqObj)
         .then(resp => resp.json())
         .then(user => {
             if(user.error){
@@ -61,14 +61,14 @@ const Login = ({fetchUserSuccess}) => {
             body: JSON.stringify({ username, email, password })
         }
 
-        fetch('https://desolate-plateau-74310.herokuapp.com/users', reqObj)
+        fetch('http://localhost:3000/users', reqObj)
         .then( resp => resp.json())
         .then( data => {
             if(data.errors){
                 setSignupErrors(data.errors)
             return
             }
-            fetch('https://desolate-plateau-74310.herokuapp.com/auth', reqObj)
+            fetch('http://localhost:3000/auth', reqObj)
             .then(resp => resp.json())
             .then(user => {
                 if(user.errors){

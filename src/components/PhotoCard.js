@@ -18,7 +18,7 @@ const PhotoCard = ({photo, showPhoto, setOpen, addToCart, user}) => {
             },
             body: JSON.stringify({like})
         }
-        fetch(`https://desolate-plateau-74310.herokuapp.com/likes/${id}`, reqObj)
+        fetch(`http://localhost:3000/likes/${id}`, reqObj)
     },[liked])
 
     const handleShowPic = () => {
@@ -26,8 +26,8 @@ const PhotoCard = ({photo, showPhoto, setOpen, addToCart, user}) => {
         setOpen(true)
     }
     
-    const url = `https://desolate-plateau-74310.herokuapp.com${image}`
-    const link = `https://desolate-plateau-74310.herokuapp.com/image_file/${id}`
+    const url = `http://localhost:3000${image}`
+    const link = `http://localhost:3000/image_file/${id}`
     const shadow = { boxShadow: '-3px -3px 22px #fff' }
     const mousedShadow = { boxShadow: `-6px -6px 50px ${color[1]}`}
 

@@ -16,7 +16,8 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router basename='/IggsPhotoShop'>
+    <Router>
+    {/* <Router basename='/IggsPhotoShop'> */}
       <React.StrictMode>
         <App />
       </React.StrictMode>
