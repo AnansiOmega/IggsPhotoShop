@@ -4,11 +4,11 @@ import { fetchPhotosSuccess } from '../Actions/photos'
 import PhotoCard from '../components/PhotoCard'
 import { Lightbox } from "react-modal-image";
 
-const Home = ({fetchPhotosSuccess, currentUser, photos, photo}) => {
+const Home = ({fetchPhotosSuccess, photos, photo}) => {
 const [ open, setOpen ] = useState(false)
 
 useEffect(() => {
-  fetch('http://localhost:3000/photos')
+  fetch('https://desolate-plateau-74310.herokuapp.com/photos')
   .then(resp => resp.json())
   .then(photos => fetchPhotosSuccess(photos))
 },[])
@@ -18,7 +18,7 @@ const renderPhotos = () => {
 }
 
 const { title, image } = photo
-let url = `http://localhost:3000${image}`
+let url = `https://desolate-plateau-74310.herokuapp.com${image}`
 
     return(
         <>
