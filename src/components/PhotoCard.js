@@ -26,8 +26,8 @@ const PhotoCard = ({photo, showPhoto, setOpen, addToCart, user}) => {
         setOpen(true)
     }
     
-    const url = `http://localhost:3000${image}`
-    const link = `http://localhost:3000/image_file/${id}`
+    const url = `https://desolate-plateau-74310.herokuapp.com${image}`
+    const link = `https://desolate-plateau-74310.herokuapp.com${id}`
     const shadow = { boxShadow: '-3px -3px 22px #fff' }
     const mousedShadow = { boxShadow: `-6px -6px 50px ${color[1]}`}
 
