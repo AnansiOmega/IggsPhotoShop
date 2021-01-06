@@ -40,11 +40,15 @@ export const Cart = () => {
                 <PayPalButton
                 amount={total}
                 shippingPreference= "NO_SHIPPING"
+                options={{
+                    clientId: "ASenCKzw7AEnV5LN5wv2E8TLaZdIpCKZIZYePB0et7L1JA-zippvq-5HFKgUi-BKXCaXtPd24I34I_SM"
+                }}
                 onSuccess={(details, data) => { 
                 alert("Thanks for donating " + details.payer.name.given_name)
                 dispatch(clearCart())
                 history.push('/')
                 }}
+                
                 />
             </>
             }
