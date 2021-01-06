@@ -10,7 +10,7 @@ export const Cart = () => {
     const [ paypalButton, setPaypalButton ] = useState(false)
     const cart = useSelector(state => state.cart, prev => prev.length === cart)
     const dispatch = useDispatch()
-    // const history = useHistory()
+    const history = useHistory()
     const total = cart.map(photo => parseInt(photo.price)).reduce((a, b) => a + b, 0)
 
     const renderCart = () => {
