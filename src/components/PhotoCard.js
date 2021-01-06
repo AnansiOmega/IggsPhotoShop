@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { showPhoto, addToCart } from '../Actions/photos'
-import { ColorExtractor } from 'react-color-extractor'
 
 export const PhotoCard = ({photo, setOpen}) => {
     const { id, category, image, price, title, likes, color } = photo
@@ -26,27 +25,13 @@ export const PhotoCard = ({photo, setOpen}) => {
         dispatch(showPhoto(photo))
         setOpen(true)
     }
-
-    const handleColorUpdate = (color) => {
-
-        let reqObj = {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({color})
-        }
-        fetch(`https://desolate-plateau-74310.herokuapp.com/photos/${id}`, reqObj)
-        .then( resp => resp.json())
-        .then( data => {
-            console.log(data)
-        })
-    }
     
     const url = `https://desolate-plateau-74310.herokuapp.com${image}`
     const link = `https://desolate-plateau-74310.herokuapp.com/image_file/${id}`
     const shadow = { boxShadow: '-3px -3px 22px #fff' }
     const mousedShadow = { boxShadow: `-6px -6px 50px ${color}`}
+    console.log(shadow, 'shadow')
+    console.log(mousedShadow, 'mousedShadow')
 
     return(
         <div className='image-card'>
@@ -65,10 +50,6 @@ export const PhotoCard = ({photo, setOpen}) => {
                 {user.id ? <button onClick={() => setLiked(liked + 1)} className="ui button circular black"><i className="heart icon"></i>{likes + liked % 2 }</button> : null}
                 <button className='ui button circular' onClick={() => dispatch(addToCart(photo))}><i style={{color: 'black'}} className="cart plus icon"></i></button>
             </div>
-            <ColorExtractor
-            src={url}
-            getColors={colors => handleColorUpdate(colors[1])}
-            />
         </div>
     )
 }
