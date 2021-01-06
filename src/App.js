@@ -25,13 +25,13 @@ export const App = () => {
             'Authorization': `Bearer ${token}`
         }
     }
-    fetch('http://localhost:3000/current_user', reqObj)
+    fetch('https://desolate-plateau-74310.herokuapp.com/current_user', reqObj)
     .then(resp => resp.json())
     .then(user => dispatch(currentUser(user)))
   },[])
 
   useEffect(() => {
-  fetch('http://localhost:3000/photos')
+  fetch('https://desolate-plateau-74310.herokuapp.com/photos')
   .then(resp => resp.json())
   .then(photos => dispatch(fetchPhotosSuccess(photos)))
   },[])

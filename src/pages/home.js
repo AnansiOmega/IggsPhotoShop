@@ -14,7 +14,7 @@ const renderPhotos = () => {
 }
 
 const { title, image } = photo
-let url = `http://localhost:3000${image}`
+let url = `https://desolate-plateau-74310.herokuapp.com${image}`
 
     return(
         <>

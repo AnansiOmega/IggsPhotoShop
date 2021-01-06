@@ -5,7 +5,6 @@ import { ColorExtractor } from 'react-color-extractor'
 
 export const PhotoCard = ({photo, setOpen}) => {
     const { id, category, image, price, title, likes, color } = photo
-    // const [ color, setColor ] = useState([])
     const [ showText, setShowText ] = useState(false)
     const user = useSelector(state => state.auth)
     const dispatch = useDispatch()
@@ -20,7 +19,7 @@ export const PhotoCard = ({photo, setOpen}) => {
             },
             body: JSON.stringify({like})
         }
-        fetch(`http://localhost:3000/likes/${id}`, reqObj)
+        fetch(`https://desolate-plateau-74310.herokuapp.com/likes/${id}`, reqObj)
     },[liked])
 
     const handleShowPic = () => {
@@ -37,15 +36,15 @@ export const PhotoCard = ({photo, setOpen}) => {
             },
             body: JSON.stringify({color})
         }
-        fetch(`http://localhost:3000/photos/${id}`, reqObj)
+        fetch(`https://desolate-plateau-74310.herokuapp.com/photos/${id}`, reqObj)
         .then( resp => resp.json())
         .then( data => {
             console.log(data)
         })
     }
     
-    const url = `http://localhost:3000${image}`
-    const link = `http://localhost:3000/image_file/${id}`
+    const url = `https://desolate-plateau-74310.herokuapp.com${image}`
+    const link = `https://desolate-plateau-74310.herokuapp.com/image_file/${id}`
     const shadow = { boxShadow: '-3px -3px 22px #fff' }
     const mousedShadow = { boxShadow: `-6px -6px 50px ${color}`}
 
@@ -66,10 +65,10 @@ export const PhotoCard = ({photo, setOpen}) => {
                 {user.id ? <button onClick={() => setLiked(liked + 1)} className="ui button circular black"><i className="heart icon"></i>{likes + liked % 2 }</button> : null}
                 <button className='ui button circular' onClick={() => dispatch(addToCart(photo))}><i style={{color: 'black'}} className="cart plus icon"></i></button>
             </div>
-            {/* <ColorExtractor
+            <ColorExtractor
             src={url}
             getColors={colors => handleColorUpdate(colors[1])}
-            /> */}
+            />
         </div>
     )
 }
