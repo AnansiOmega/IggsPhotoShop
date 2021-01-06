@@ -7,10 +7,10 @@ import { removeFromCart } from '../Actions/photos'
 
 
 export const Cart = () => {
-    const [ paypalButton, setPaypalButton ] = useState(false)
+    // const [ paypalButton, setPaypalButton ] = useState(false)
     const cart = useSelector(state => state.cart, prev => prev.length === cart)
     const dispatch = useDispatch()
-    const history = useHistory()
+    // const history = useHistory()
     const total = cart.map(photo => parseInt(photo.price)).reduce((a, b) => a + b, 0)
 
     const renderCart = () => {
@@ -31,7 +31,7 @@ export const Cart = () => {
                 <div className='your-cart'>Your cart</div>
                     { cart.length !== 0 ? <div className='cart'>{renderCart()}</div> : null }
                 <div className='total'>Total: ${total}.00</div>
-                <a href='buymeacoff.ee/AnansiOmega'><button style={{ marginLeft: '5px', width: '497px', color: 'black' }} className='massive ui button'>Make a Donation</button></a>
+                <a href='https://www.buymeacoffee.com/AnansiOmega'><button style={{ marginLeft: '5px', width: '497px', color: 'black' }} className='massive ui button'>Make a Donation</button></a>
             </div>
             </>
             :
