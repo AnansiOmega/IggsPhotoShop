@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { PayPalButton } from "react-paypal-button-v2";
-// import { useHistory } from 'react-router-dom'
-// import { clearCart } from '../Actions/photos'
+import { useHistory } from 'react-router-dom'
+import { clearCart } from '../Actions/photos'
 import { removeFromCart } from '../Actions/photos'
 
 
@@ -22,6 +22,11 @@ export const Cart = () => {
         })
     }
 
+    const handleCheckout = () => {
+        dispatch(clearCart())
+        history.push('/')
+    }
+
     return(
         <>
             { !paypalButton ? 
@@ -31,7 +36,7 @@ export const Cart = () => {
                 <div className='your-cart'>Your cart</div>
                     { cart.length !== 0 ? <div className='cart'>{renderCart()}</div> : null }
                 <div className='total'>Total: ${total}.00</div>
-                <a href='https://www.buymeacoffee.com/AnansiOmega' target='_blank'><button onClick={console.log('hi')} style={{ marginLeft: '5px', width: '497px', color: 'black' }} className='massive ui button'>Make a Donation</button></a>
+                <a href='https://www.buymeacoffee.com/AnansiOmega' target='_blank'><button onClick={handleCheckout} style={{ marginLeft: '5px', width: '497px', color: 'black' }} className='massive ui button'>Make a Donation</button></a>
             </div>
             </>
             :

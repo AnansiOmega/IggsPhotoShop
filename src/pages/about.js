@@ -9,7 +9,8 @@ export const About = () => {
             <p>
                 The idea behind this website is to test my skills in creating
                 an e-commerce website. Unfortunately, I have nothing to sell, so by adding these photos to your cart and
-                purchasing them you are making a donation for the phenomenal work that I've been doing.
+                purchasing them you are making a donation for the phenomenal work that I've been doing. You'll be redirected
+                to another website that you can make a donation of your choice.
             </p>
             <p>
                 Also, I've given you the ability to download any photo you'd like to your computer. Lastly, if you feel like making
