@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { PayPalButton } from "react-paypal-button-v2";
-import { useHistory } from 'react-router-dom'
-import { clearCart } from '../Actions/photos'
+// import { PayPalButton } from "react-paypal-button-v2";
+// import { useHistory } from 'react-router-dom'
+// import { clearCart } from '../Actions/photos'
 import { removeFromCart } from '../Actions/photos'
 
 
