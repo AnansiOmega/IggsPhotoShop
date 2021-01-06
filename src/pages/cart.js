@@ -7,7 +7,7 @@ import { removeFromCart } from '../Actions/photos'
 
 
 export const Cart = () => {
-    // const [ paypalButton, setPaypalButton ] = useState(false)
+    const [ paypalButton, setPaypalButton ] = useState(false)
     const cart = useSelector(state => state.cart, prev => prev.length === cart)
     const dispatch = useDispatch()
     // const history = useHistory()
