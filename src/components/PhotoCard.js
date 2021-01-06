@@ -30,8 +30,6 @@ export const PhotoCard = ({photo, setOpen}) => {
     const link = `https://desolate-plateau-74310.herokuapp.com/image_file/${id}`
     const shadow = { boxShadow: '-3px -3px 22px #fff' }
     const mousedShadow = { boxShadow: `-6px -6px 50px ${color}`}
-    console.log(shadow, 'shadow')
-    console.log(mousedShadow, 'mousedShadow')
 
     return(
         <div className='image-card'>
