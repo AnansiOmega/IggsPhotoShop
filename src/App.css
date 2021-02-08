@@ -2,15 +2,6 @@
   text-align: center;
 }
 
-.image-card {
-  width: 700px;
-  min-height: 500px;
-  max-height: auto;
-  float: left;
-  margin: 3px;
-  padding: 3px;
-}
-
 .frame {
   position:relative;
   padding:0;
@@ -131,4 +122,29 @@ h3 {
   font-size: 20px;
   width: 800px;
   display: inline-block;
+}
+
+.card-container {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 800px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.image-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 300vh; */
+  /* min-height: 300vh; */
+  /* max-height: auto; */
+  /* float: left; */
+  /* margin: 3px; */
+  /* padding: 3px; */
 }

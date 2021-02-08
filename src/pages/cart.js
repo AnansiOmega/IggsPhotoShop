@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 // import { PayPalButton } from "react-paypal-button-v2";
 import { useHistory } from 'react-router-dom'
 import { clearCart } from '../Actions/photos'
@@ -9,7 +9,11 @@ import { removeFromCart } from '../Actions/photos'
 export const Cart = () => {
     const [ paypalButton, setPaypalButton ] = useState(false)
     const cart = useSelector(state => state.cart, prev => prev.length === cart)
+
+
     const dispatch = useDispatch()
+
+
     const history = useHistory()
     const total = cart.map(photo => parseInt(photo.price)).reduce((a, b) => a + b, 0)
 
