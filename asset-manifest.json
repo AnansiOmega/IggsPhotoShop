@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/IggsPhotoShop/static/css/main.84f5455e.chunk.css",
-    "main.js": "/IggsPhotoShop/static/js/main.5099769f.chunk.js",
-    "main.js.map": "/IggsPhotoShop/static/js/main.5099769f.chunk.js.map",
+    "main.js": "/IggsPhotoShop/static/js/main.f0ca7e71.chunk.js",
+    "main.js.map": "/IggsPhotoShop/static/js/main.f0ca7e71.chunk.js.map",
     "runtime-main.js": "/IggsPhotoShop/static/js/runtime-main.6c6b675b.js",
     "runtime-main.js.map": "/IggsPhotoShop/static/js/runtime-main.6c6b675b.js.map",
     "static/css/2.a3da3057.chunk.css": "/IggsPhotoShop/static/css/2.a3da3057.chunk.css",
@@ -22,6 +22,6 @@
     "static/css/2.a3da3057.chunk.css",
     "static/js/2.d6f626d6.chunk.js",
     "static/css/main.84f5455e.chunk.css",
-    "static/js/main.5099769f.chunk.js"
+    "static/js/main.f0ca7e71.chunk.js"
   ]
 }
