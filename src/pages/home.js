@@ -12,7 +12,7 @@ useEffect(()=> {
     photos.length < 1 ? setLoader(true) : setLoader(false)
 }, [photos])
 
-
+console.log(photos.length)
 const renderPhotos = () => {
     return photos.map(photo => <PhotoCard setOpen={setOpen} photo={photo} key={photo.id}/>)
 }

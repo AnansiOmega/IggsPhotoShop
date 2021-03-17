@@ -15,7 +15,7 @@ export const App = () => {
   const dispatch = useDispatch()
   const [pageNum, setPageNum] = useState(1)
   const [scrollHeight, setScrollHeight] = useState('')
-  const [fetchHeight, setFetchHeight] = useState(600)
+  const [fetchHeight, setFetchHeight] = useState(500)
   useEffect(() => {
     document.body.style.backgroundImage = `url(${image})`
     document.addEventListener('scroll', () => setScrollHeight(window.scrollY))
@@ -24,15 +24,18 @@ export const App = () => {
   useEffect(() => {
     if(scrollHeight > fetchHeight){
       setPageNum(pageNum + 1)
-      setFetchHeight(fetchHeight * 2)
+      setFetchHeight(fetchHeight + 500)
     }
   }, [scrollHeight])
 
   useEffect(() => {
     fetch(`https://desolate-plateau-74310.herokuapp.com/photos?page=${pageNum}`)
     .then(resp => resp.json())
-    .then(photos => dispatch(fetchPhotosSuccess(photos)))
+    .then(photos => {
+      console.log(photos)
+      dispatch(fetchPhotosSuccess(photos))})
   },[pageNum])
+
 
   useEffect(() => {
     const token = localStorage.getItem('myToken')
