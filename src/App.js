@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState ,useEffect } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom'
 import { Home } from './pages/home'
@@ -13,12 +13,30 @@ import { fetchPhotosSuccess } from './Actions/photos'
 
 export const App = () => {
   const dispatch = useDispatch()
+  const [pageNum, setPageNum] = useState(1)
+  const [scrollHeight, setScrollHeight] = useState('')
+  const [fetchHeight, setFetchHeight] = useState(600)
   useEffect(() => {
     document.body.style.backgroundImage = `url(${image})`
+    document.addEventListener('scroll', () => setScrollHeight(window.scrollY))
   },[])
 
   useEffect(() => {
+    if(scrollHeight > fetchHeight){
+      setPageNum(pageNum + 1)
+      setFetchHeight(fetchHeight * 2)
+    }
+  }, [scrollHeight])
+
+  useEffect(() => {
+    fetch(`https://desolate-plateau-74310.herokuapp.com/photos?page=${pageNum}`)
+    .then(resp => resp.json())
+    .then(photos => dispatch(fetchPhotosSuccess(photos)))
+  },[pageNum])
+
+  useEffect(() => {
     const token = localStorage.getItem('myToken')
+    if(!token) return
     const reqObj = {
         method: 'GET',
         headers: {
@@ -30,11 +48,7 @@ export const App = () => {
     .then(user => dispatch(currentUser(user)))
   },[])
 
-  useEffect(() => {
-  fetch('https://desolate-plateau-74310.herokuapp.com/photos')
-  .then(resp => resp.json())
-  .then(photos => dispatch(fetchPhotosSuccess(photos)))
-  },[])
+  
 
 
 
