@@ -48,8 +48,8 @@ export const PhotoCard = ({photo, setOpen}) => {
                     <span>Price: ${price}.00</span>
                 </div>
                 <button className='ui button circular'><a style={{color: 'black'}} href={link} target="_blank" rel="noreferrer noopener"><i className="download icon"></i></a></button>
-                {user.id ? <button onClick={() => setLiked(liked + 1)} className="ui button circular black"><i className="heart icon"></i>{likes + liked % 2 }</button> : null}
-                <button className='ui button circular' onClick={() => dispatch(addToCart(photo))}><i style={{color: 'black'}} className="cart plus icon"></i></button>
+                {user.id ? <button aria-label='like button' onClick={() => setLiked(liked + 1)} className="ui button circular black"><i className="heart icon"></i>{likes + liked % 2 }</button> : null}
+                <button aria-label='download button' className='ui button circular' onClick={() => dispatch(addToCart(photo))}><i style={{color: 'black'}} className="cart plus icon"></i></button>
             </div>
         </div>
     )
