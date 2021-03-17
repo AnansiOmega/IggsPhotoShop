@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { shallowEqual, useSelector } from 'react-redux'
 import { PhotoCard } from '../components/PhotoCard'
 import { Lightbox } from "react-modal-image";
 
 export const Home = () => {
 const [ open, setOpen ] = useState(false)
 const [loader, setLoader] = useState(false)
-const photos = useSelector(state => state.photos)
+const photos = useSelector(state => state.photos, shallowEqual)
 const photo = useSelector(state => state.photo)
 useEffect(()=> {
     photos.length < 1 ? setLoader(true) : setLoader(false)
-})
+}, [photos])
 
 
 const renderPhotos = () => {
